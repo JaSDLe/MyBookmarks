@@ -1,10 +1,12 @@
 const { app, BrowserWindow } = require('electron')
 
-function createWindow () {   
+function createWindow() {
   // 创建浏览器窗口
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 400,
+    height: 300,
+    titleBarStyle: 'hidden',
+    // titleBarStyle: 'hiddenInset',
     webPreferences: {
       nodeIntegration: true
     }
@@ -14,12 +16,25 @@ function createWindow () {
   win.loadFile('index.html')
 
   // 打开开发者工具
-//   win.webContents.openDevTools()
+  //   win.webContents.openDevTools()
+
+
+  win.setProgressBar(0.5)
 }
 
 // Electron会在初始化完成并且准备好创建浏览器窗口时调用这个方法
 // 部分 API 在 ready 事件触发后才能使用。
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createWindow()
+
+  app.on('activate', () => {
+    // 在macOS上，当单击dock图标并且没有其他窗口打开时，
+    // 通常在应用程序中重新创建一个窗口。
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
+  })
+})
 
 //当所有窗口都被关闭后退出
 app.on('window-all-closed', () => {
@@ -30,13 +45,15 @@ app.on('window-all-closed', () => {
   }
 })
 
-app.on('activate', () => {
-  // 在macOS上，当单击dock图标并且没有其他窗口打开时，
-  // 通常在应用程序中重新创建一个窗口。
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
-  }
-})
-
 // 您可以把应用程序其他的流程写在在此文件中
 // 代码 也可以拆分成几个文件，然后用 require 导入。
+app.setUserTasks([
+  {
+    program: process.execPath,
+    arguments: '--new-window',
+    iconPath: process.execPath,
+    iconIndex: 0,
+    title: 'New Window',
+    description: 'Create a new window'
+  }
+])
