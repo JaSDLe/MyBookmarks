@@ -4,23 +4,58 @@
 <head>
   <meta charset="UTF-8">
   <title>Hello World!</title>
-  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' renderer/ js/ 'nonce-abc' 'sha256-3a88140de8d21e2fc9cab7f92a191e30915ad1b1cefc91305703a0565794679e' 'sha256-e3af557819960bfd8e8a66a3a2486c0904b0ad97c38504f586483eea01773229';" />
+  <script src="./js/vue.min.js"></script>
+  <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script> -->
+  <script src="./js/vue.js"></script>
 </head>
 
 <body>
-  <h1>Hello World!</h1>
-  We are using node
-  <script>document.write(process.versions.node)</script>,
-  Chrome
-  <script>document.write(process.versions.chrome)</script>,
-  and Electron
-  <script>document.write(process.versions.electron)</script>.
+  <div id="app">
+    <h1>Hello World!</h1>
 
-  <a href="javascript:void(0);" onclick="a()">123</a>
+    <div>{{ data }}</div>
+    <!-- <a v-if="false" href="javascript:void(0);" onclick="a()">123</a> -->
+    <a id="a">123</a>
+    <!-- <a href="javascript:void(0);" onclick="b()">b</a>
+    <a href="javascript:void(0);" onclick="aa()">aa</a> -->
+    <div v-for="(item, index) in data" :key="index">{{ item }}</div>
+
+    <div style="width: 100%;height: 100px;background-color: blueviolet;" id="drag_test">
+      <h2>文件拖动到此处</h2>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- <a href="#" id="drag">item</a> -->
+  <!-- <script type="text/javascript" charset="utf-8">
+    document.getElementById('drag').ondragstart = (event) => {
+      event.preventDefault()
+      ipcRenderer.send('ondragstart', '/path/to/item')
+    }
+  </script> -->
 
   <!-- You can also require other files to run in this process -->
-  <script src="./renderer/renderer.js"></script>
+  <!-- <script src="./renderer/renderer.js"></script> -->
+  <!-- <script src="./js/vue.js"></script> -->
+  <!-- <script src="./vue.min.js"></script> -->
+  <!-- <script type="text/javascript" nonce="abc">
+    // new Vue({
+    //   el: '#app',
+    //   data() {
+    //     return {
+    //       bbb: false,
+    //       data: [1, 2, 3]
+    //     }
+    //   },
+    //   methods: {}
+    // })
+    function b() {
+      alert('b')
+    }
+  </script> -->
+  <!-- <script type="text/javascript">function aa(){alert('ba')}</script> -->
 </body>
 
 </html>

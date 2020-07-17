@@ -1,25 +1,25 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 
 function createWindow() {
   // 创建浏览器窗口
   const win = new BrowserWindow({
     width: 400,
     height: 300,
-    titleBarStyle: 'hidden',
-    // titleBarStyle: 'hiddenInset',
     webPreferences: {
       nodeIntegration: true
     }
   })
 
   // 并且为你的应用加载index.html
-  win.loadFile('index.html')
+  // win.loadFile('index.html')
+  win.loadURL('http://localhost:8080/')
 
   // 打开开发者工具
-  //   win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
 
-  win.setProgressBar(0.5)
+  // 任务栏进度条 <0去掉 >1不确定
+  win.setProgressBar(0.58)
 }
 
 // Electron会在初始化完成并且准备好创建浏览器窗口时调用这个方法
@@ -47,6 +47,8 @@ app.on('window-all-closed', () => {
 
 // 您可以把应用程序其他的流程写在在此文件中
 // 代码 也可以拆分成几个文件，然后用 require 导入。
+
+// 任务栏弹出列表
 app.setUserTasks([
   {
     program: process.execPath,
@@ -57,3 +59,24 @@ app.setUserTasks([
     description: 'Create a new window'
   }
 ])
+
+
+
+
+
+// console.log('##########################################')
+
+Menu.setApplicationMenu(null)
+// BrowserWindow.setProgressBar(0.9)
+
+
+// const { ipcMain } = require('electron')
+
+// ipcMain.on('ondragstart', (event, filePath) => {
+//   console.log(event)
+//   console.log(filePath)
+//   event.sender.startDrag({
+//     file: filePath,
+//     icon: '/path/to/icon.png'
+//   })
+// })

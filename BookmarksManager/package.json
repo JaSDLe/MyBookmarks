@@ -4,7 +4,9 @@
   "description": "书签管理器",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "test": "cd vue && dir && cd .. && dir",
+    "tt": "cd vue && dir && npm run serve && cd .. && dir"
   },
   "author": "Jason Lee",
   "license": "GPL-3.0"
