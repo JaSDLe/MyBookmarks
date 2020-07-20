@@ -10,7 +10,7 @@ document.getElementById('a').addEventListener('click', (e) => {
   a()
 })
 
-export function a() {
+function a() {
   add()
   // alert('a')
 }
@@ -115,11 +115,20 @@ function addChild(child, array) {
       } else {
         array.push(new A(child.attributes.href.value, child.attributes.add_date.value.concat(suffix), child.attributes.icon.value, child.innerText))
       }
+      let a = new A()
+      child.attributes.forEach(item => {
+        if (a.hasOwnProperty(item.name)) {
+          if (item.name === )
+          a[item.name] = item.value
+        }
+      })
       break;
     default:
       break;
   }
 }
+
+Map
 
 function H(addDate, lastModified, value) {
   this.addDate = addDate

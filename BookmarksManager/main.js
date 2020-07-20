@@ -11,8 +11,8 @@ function createWindow() {
   })
 
   // 并且为你的应用加载index.html
-  // win.loadFile('index.html')
-  win.loadURL('http://localhost:8080/')
+  win.loadFile('./vue/dist/index.html')
+  // win.loadURL('http://localhost:8080/')
 
   // 打开开发者工具
     win.webContents.openDevTools()

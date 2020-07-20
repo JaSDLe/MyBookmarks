@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <div @click="getData">{{ getData }}</div>
+    <button @click="del">del</button>
+    <button @click="add">add</button>
     <div v-for="(item, index) in data" :key="index">{{ item }}</div>
 
     <div style="width: 100%;height: 100px;background-color: blueviolet;" id="drag_test">
@@ -71,6 +73,12 @@ export default {
       console.log(new H('1', '2', '3'))
       console.log(new H('1', '2', '3').addDate)
       return new H('1', '2', '3').addDate
+    },
+    del() {
+      this.data.pop()
+    },
+    add() {
+      this.data.push(this.data[this.data.length - 1] + 1)
     },
     loopArray(array, parentArray) {
       for (let i = 0; i < array.length; i++) {
