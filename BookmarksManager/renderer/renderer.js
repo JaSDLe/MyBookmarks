@@ -110,25 +110,36 @@ function addChild(child, array) {
     case 'A':
       // console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa')
       // console.log(child.attributes)
-      if (child.attributes.length == 2) {
-        array.push(new A(child.attributes.href.value, child.attributes.add_date.value.concat(suffix), '', child.innerText))
-      } else {
-        array.push(new A(child.attributes.href.value, child.attributes.add_date.value.concat(suffix), child.attributes.icon.value, child.innerText))
-      }
+      // if (child.attributes.length == 2) {
+      //   array.push(new A(child.attributes.href.value, child.attributes.add_date.value.concat(suffix), '', child.innerText))
+      // } else {
+      //   array.push(new A(child.attributes.href.value, child.attributes.add_date.value.concat(suffix), child.attributes.icon.value, child.innerText))
+      // }
       let a = new A()
       child.attributes.forEach(item => {
         if (a.hasOwnProperty(item.name)) {
-          if (item.name === )
-          a[item.name] = item.value
+          if (item.name === 'add_date' || item.name === 'last_modified') {
+            a[map.get(item.name)] = item[item.name].value.concat(suffix)
+          } else {
+            a[map.get(item.name)] = item[item.name].value
+          }
         }
       })
+      a.value = child.innerText
+      array.push(a)
       break;
     default:
       break;
   }
 }
 
-Map
+let map = new Map()
+map.set('add_date', 'addDate')
+map.set('last_modified', 'lastModified')
+map.set('href', 'href')
+map.set('icon', 'icon')
+
+
 
 function H(addDate, lastModified, value) {
   this.addDate = addDate
