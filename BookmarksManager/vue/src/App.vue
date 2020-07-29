@@ -1,78 +1,68 @@
 <template>
   <div id="app">
-    <div @click="getData">{{ getData }}</div>
-    <button @click="del">del</button>
+    <!-- <div @click="getData">{{ result }}</div> -->
+
+    <!-- <div style="display: flex;">
+      <result-item v-for="(item, index) in result" :key="index" :data="item" />
+      <result-item :data="result" />
+    </div> -->
+
+    <!-- <result-item v-for="(item, index) in result" :key="index" :data="item" /> -->
+
+    <!-- <button @click="del">del</button>
     <button @click="add">add</button>
-    <div v-for="(item, index) in data" :key="index">{{ item }}</div>
+    <div v-for="(item, index) in data" :key="index">{{ item }}</div> -->
+
+    <button @click="getData">getData</button>
 
     <div style="width: 100%;height: 100px;background-color: blueviolet;" id="drag_test">
-      <h2>文件拖动到此处1</h2>
-      <span v-show="false" id="result"></span>
+      <h2>文件拖动到此处</h2>
     </div>
+
+    <span v-show="false" id="result"></span>
+
+    <result-item v-if="result != null" :data="result" />
   </div>
 </template>
 
 <script>
-import { H, A } from './utils/class'
-import fs from '../../renderer/fs'
+import ResultItem from '@/components/result-item'
+import mock from '@/utils/mock'
+import { H, A } from '@/utils/class'
+// import fs from '../../renderer/fs'
 // import { } from '../../renderer/renderer'
 
 export default {
-  components: {},
+  components: {
+    ResultItem
+  },
   data() {
     return {
       bbb: false,
       data: [1, 2, 3],
       suffix: '000',
-      result: []
+      result: null
       // watch: document.getElementById('drag_test').innerText
     }
   },
   watch: {
-    // watch: function(newVal, oldVal) {
+    // result: function(newVal, oldVal) {
     //   console.log('old', oldVal)
     //   console.log('new', newVal)
     // }
   },
   mounted() {
-    console.log(new Date())
-    // a()
-    // const dragWrapper = document.getElementById('drag_test')
-    // dragWrapper.addEventListener('drop', e => {
-    //   e.preventDefault()
-    //   const files = e.dataTransfer.files
-    //   console.log(e.dataTransfer)
-    //   console.log(e.dataTransfer.files)
-    //   console.log(e.dataTransfer.files[0])
-    //   if (files && files.length >= 1) {
-    //     let reader = new FileReader()
-    //     // console.log(reader.readAsText(e.dataTransfer.files[0]))
-    //     // const doc = new DOMParser().parseFromString(fs.readFileSync(files[0].path, 'utf-8'), 'text/html')
-    //     console.log(fs)
-    //     const doc = new DOMParser().parseFromString(fs.readFileSync(files[0].path, 'utf-8'), 'text/html')
-    //     const dl = doc.body.children[1]
-    //     console.log(dl)
-    //   //   let content = doc.body.children[1].children[1].children[1].children
-    //   //   // for (let i = 1; i < content.length; i++) {
-    //   //   //   content[i]
-    //   //   //   this.result.push()
-    //   //   //   addChild(content[i], result)
-    //   //   // }
-    //   //   console.log(content)
-    //   //   this.loopArray(content, this.result)
-    //   //   console.log(this.result)
-    //   }
-    // })
-    // //这个事件也需要屏蔽
-    // dragWrapper.addEventListener('dragover', e => {
-    //   e.preventDefault()
-    // })
+    // this.result = document.getElementById('result').innerText
+    // console.log(mock)
+    // this.result = mock
   },
   methods: {
     getData() {
-      console.log(new H('1', '2', '3'))
-      console.log(new H('1', '2', '3').addDate)
-      return new H('1', '2', '3').addDate
+      console.log(mock)
+      console.log(document.getElementById('result').innerText)
+      console.log(this.result)
+      // this.result = document.getElementById('result').innerText
+      this.result = mock
     },
     del() {
       this.data.pop()

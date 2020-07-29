@@ -4,16 +4,16 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
-console.log(new Date())
+// console.log(new Date())
 
-document.getElementById('a').addEventListener('click', (e) => {
-  a()
-})
+// document.getElementById('a').addEventListener('click', (e) => {
+//   a()
+// })
 
-function a() {
-  add()
-  // alert('a')
-}
+// function a() {
+//   add()
+//   // alert('a')
+// }
 
 const fs = require('fs')
 
@@ -43,7 +43,7 @@ function add(element) {
       console.log(content)
       loopArray(content, result)
       console.log(result)
-      document.getElementById("result").innerText = result
+      document.getElementById("result").innerText = JSON.stringify(result)
     }
   })
   element.addEventListener("dragover", (e) => {
@@ -95,6 +95,7 @@ function pushElement(element, child, array) {
     }
   }
   element.value = child.innerText
+  element.type = element.constructor.name
   array.push(element)
 }
 
