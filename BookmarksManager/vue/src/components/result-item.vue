@@ -22,15 +22,30 @@
           </div>
         </div>
       </div> -->
-      <my-card>
+      <my-card v-for="(item, index) in data" :key="index">
         <template #header>
-          123
+          <div v-if="!isArray(item) && item.type == 'H'" class="content-h">
+            <h3>{{ item.value }}</h3>
+            <div class="row-time">
+              <div class="time">添加时间：{{ item.addDate | getDate }}</div>
+              <div class="time">修改时间：{{ item.lastModified | getDate }}</div>
+            </div>
+          </div>
         </template>
         <template #body>
-          456
+          <div v-if="!isArray(item) && item.type == 'A'" class="content-a">
+            <div class="link">
+              <div>
+                <img width="16" :src="item.icon">
+              </div>
+              <div class="text-link" @click="open(item.href)">{{ item.value }}</div>
+            </div>
+            <div class="time">添加时间：{{ item.addDate | getDate }}</div>
+          </div>
+          <result-item v-if="isArray(item)" :data="item" />
         </template>
       </my-card>
-      <div v-for="(item, index) in data" :key="index">
+      <!-- <div v-for="(item, index) in data" :key="index">
         <result-item v-if="isArray(item)" :data="item" />
         <div v-else>
           <div v-if="item.type == 'A'" class="content-a">
@@ -50,7 +65,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div v-else>else {{ data.length }}</div>
     <div></div>

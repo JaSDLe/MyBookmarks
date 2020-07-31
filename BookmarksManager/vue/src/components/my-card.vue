@@ -1,23 +1,16 @@
 <template>
-  <div class="el-card box-card is-always-shadow">
+  <div class="el-card is-always-shadow">
     <div class="el-card__header">
-      <!-- <div class="clearfix">
-        <span>卡片名称</span> -->
-        <slot name="header"></slot>
-      <!-- </div> -->
+      <slot name="header"></slot>
     </div>
     <div class="el-card__body">
       <slot name="body"></slot>
-      <!-- <div class="text item">列表内容 1</div>
-      <div class="text item">列表内容 2</div>
-      <div class="text item">列表内容 3</div>
-      <div class="text item">列表内容 4</div> -->
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style>
@@ -28,6 +21,7 @@ export default {};
   overflow: hidden;
   color: #303133;
   transition: 0.3s;
+  margin: 20px;
 }
 .is-always-shadow {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
